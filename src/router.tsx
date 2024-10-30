@@ -11,6 +11,7 @@ import ConfirmAccountView from "./views/auth/ConfirmAccountView";
 import RequestCodeView from "./views/auth/RequestCodeView";
 import ForgotPasswordView from "./views/auth/ForgotPasswordView";
 import NewPasswordView from "./views/auth/NewPasswordView";
+import { ToastContainer } from "react-toastify";
 
 export default function Router() {
 
@@ -33,6 +34,8 @@ export default function Router() {
                     <Route path="/auth/new-password" element={<NewPasswordView/>} />
                 </Route>
             </Routes> 
+
+            <ToastContainer/>
         </BrowserRouter>
     )
 }
