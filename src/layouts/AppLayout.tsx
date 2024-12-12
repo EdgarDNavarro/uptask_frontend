@@ -5,7 +5,7 @@ import { NavMenu } from "@/components/NavMenu";
 import { useAuth } from "@/hooks/useAuth";
 
 const AppLayout = () => {
-    const { data, isError, isLoading, error } = useAuth()
+    const { data, isError, isLoading } = useAuth()
     
     if(isLoading) return 'Cargando . . .'
     if(isError) return <Navigate to='/auth/login' />
