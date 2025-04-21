@@ -1,4 +1,5 @@
 import { getFullProjectById } from "@/api/ProjectAPI";
+import CredentialList from "@/components/credentials/CredentialList";
 import AddTaskModal from "@/components/tasks/AddTaskModal";
 import EditTaskData from "@/components/tasks/EditTaskData";
 import TaskList from "@/components/tasks/TaskList";
@@ -48,6 +49,12 @@ const ProjectDetailsView = () => {
                     </Link>
                 </nav>
             )}
+
+            <CredentialList
+                credentials={data.credentials} 
+                projectId={projectId}
+                canEdit={canEdit}
+            />
 
             <TaskList
                 tasks={data.tasks}

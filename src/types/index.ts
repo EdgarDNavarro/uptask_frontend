@@ -75,6 +75,18 @@ export type TaskProject = z.infer<typeof taskProjectSchema>
 export type Task = z.infer<typeof taskSchema>
 export type TaskFormData = Pick<Task, 'name' | 'description'>
 
+/** Credentials */
+export const credentialSchema = z.object({
+    _id: z.string(),
+    key: z.string(),
+    value: z.string(),
+    project: z.string(),
+    createdAt: z.string(),
+    updatedAt:  z.string(),
+})
+export type Credential = z.infer<typeof credentialSchema>
+export type CredentialFormData = Pick<Credential, 'key' | 'value'>
+
 /** Projects */
 export const projectSchema = z.object({
     _id: z.string(),
@@ -83,6 +95,7 @@ export const projectSchema = z.object({
     description: z.string(),
     manager: z.string(userSchema.pick({_id: true})),
     tasks: z.array(taskProjectSchema),
+    credentials: z.array(credentialSchema),
     team: z.array(z.string(userSchema.pick({_id: true})))
 })
 

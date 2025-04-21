@@ -51,6 +51,7 @@ export async function getFullProjectById(id: Project['_id']) {
         
         const response = projectSchema.safeParse(data)
         if(response.success) {
+            console.log(response.data);
             return response.data
         }
     } catch (error) {
