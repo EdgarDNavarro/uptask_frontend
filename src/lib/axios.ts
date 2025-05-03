@@ -1,3 +1,4 @@
+import { useGlobalLoader } from "@/store/useGlobalLoader";
 import axios from "axios";
 
 const api = axios.create({
@@ -12,7 +13,23 @@ api.interceptors.request.use(config => {
   if(token) {
     config.headers.Authorization = `Bearer ${token}`
   }
+
+  if (config.method !== 'get') {
+    useGlobalLoader.getState().setLoading(true);
+  }
+
   return config
 })
+
+api.interceptors.response.use(
+  (response) => {
+    useGlobalLoader.getState().setLoading(false);
+    return response;
+  },
+  (error) => {
+    useGlobalLoader.getState().setLoading(false);
+    return Promise.reject(error);
+  }
+);
 
 export default api
